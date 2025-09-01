@@ -1,48 +1,72 @@
-# ignore cmake build data
-build/
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
 
-# ignore bin folder where install products go
-bin/
-
-# ignore out folder, test results go here
-out/
-
-# this file is generated from cibuild.sh, and is based on current tag
-libkram/kram/KramVersion.h
-
-# ignore zip files
-*.zip
-
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+*~
+*.autosave
+*.a
+*.core
+*.moc
 *.o
 *.obj
-
-# Precompiled Headers
-# *.gch
-# *.pch
-
-# Compiled Dynamic libraries
+*.orig
+*.rej
 *.so
-*.dylib
+*.so.*
+*_pch.h.cpp
+*_resource.rc
+*.qm
+.#*
+*.*#
+core
+!core/
+tags
+.DS_Store
+.directory
+*.debug
+*.prl
+*.app
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+Thumbs.db
+*.res
+*.rc
+/.qmake.cache
+/.qmake.stash
+
+# qtcreator generated files
+*.pro.user*
+*.txt.user*
+
+# xemacs temporary files
+*.flc
+
+# Vim temporary files
+.*.swp
+
+# Visual Studio generated files
+*.ib_pdb_index
+*.idb
+*.ilk
+*.sln
+*.suo
+*.vcproj
+*vcproj.*.*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj
+*vcxproj.*
+
+# MinGW generated files
+*.Debug
+*.Release
+
+# Python byte code
+*.pyc
+
+# Binaries
+# --------
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
-*.out
 
-plugin/ext/
