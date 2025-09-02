@@ -163,19 +163,7 @@ namespace Etc
         
 		const char * EncodingFormatToString(void) const;
 		
-        void SetVerboseOutput(bool enabled)
-        {
-            m_bVerboseOutput = enabled;
-        }
-        bool GetVerboseOutput() const
-        {
-            return m_bVerboseOutput;
-        }
-        
-	private:
-        bool m_bVerboseOutput;
-       
-		
+    private:
 		//Image(void);
 		
 		// inputs

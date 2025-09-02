@@ -19,6 +19,7 @@ ob_add_standard_library(${LIB_TARGET_NAME}
     IMPLEMENTATION
         Etc.cpp
         EtcImage.cpp
+        Output.h
         Codec/EtcBlock4x4.cpp
         Codec/EtcBlock4x4.h
         Codec/EtcBlock4x4Encoding.cpp

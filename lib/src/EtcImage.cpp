@@ -23,6 +23,7 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 
 
 #include "Etc/EtcConfig.h"
+#include "Output.h"
 
 // is this needed?
 //#if ETC_WINDOWS
@@ -97,8 +98,6 @@ namespace Etc
 
 		m_iEncodeTime_ms = 0;
 
-		m_bVerboseOutput = false;
-        
         // this can be nullptr
         m_pafrgbaSource = a_pafSourceRGBA;
 	}
@@ -243,10 +242,7 @@ namespace Etc
                 break;
             }
         }
-        if (m_bVerboseOutput)
-        {
-            KLOGI("EtcComp", "Total iterations %d\n", totalIterations);
-        }
+        DEBUG_PRINT("Total iterations %d\n", totalIterations);
         
         // block deletes the encoding, so don't delete here
         
@@ -319,10 +315,7 @@ namespace Etc
         {
             numBlocksToFinish = static_cast<unsigned int>(roundf(0.01f * blockPercent * numberOfBlocks));
             
-            if (m_bVerboseOutput)
-            {
-                KLOGI("EtcComp", "Will only finish %d/%d blocks", numBlocksToFinish, numberOfBlocks);
-            }
+            DEBUG_PRINT("Will only finish %d/%d blocks", numBlocksToFinish, numberOfBlocks);
         }
         else
         {
@@ -481,10 +474,7 @@ namespace Etc
         
         delete encoderRG;
         
-        if (m_bVerboseOutput)
-        {
-            KLOGI("EtcComp", "Total iterations %d in %d passes\n", totalIterations, pass + 1);
-        }
+        DEBUG_PRINT("Total iterations %d in %d passes\n", totalIterations, pass + 1);
         
         auto end = std::chrono::steady_clock::now();
 		std::chrono::milliseconds elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
