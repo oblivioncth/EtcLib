@@ -2,7 +2,7 @@
 #
 # Original project by Google
 # Functional improvements by Alec Miller (alecmiller@yahoo.com) as part of kram
-# Current CMake implementation by Christian Heimlich (chris@pcserenity.com)
+# Current CMake implementation and minor tweaks by Christian Heimlich (chris@pcserenity.com)
 
 #================= Project Setup ==========================
 

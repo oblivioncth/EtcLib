@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include "EtcConfig.h"
-#include "Etc.h"
-#include "EtcFilter.h"
+#include "Etc/EtcConfig.h"
+#include "Etc/Etc.h"
+//#include "EtcFilter.h"
 
 #include <string.h>
 

@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 //#include "EtcColor.h"
 
 #include <math.h>

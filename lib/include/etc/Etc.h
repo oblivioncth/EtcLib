@@ -16,10 +16,10 @@
 
 #pragma once
 
-#include "EtcConfig.h"
-#include "EtcImage.h"
-#include "EtcColor.h"
-#include "EtcErrorMetric.h"
+#include "Etc/EtcConfig.h"
+#include "Etc/EtcImage.h"
+#include "Etc/EtcColor.h"
+#include "Etc/EtcErrorMetric.h"
 #include <memory>
 
 #define ETCCOMP_MIN_EFFORT_LEVEL (0.0f)

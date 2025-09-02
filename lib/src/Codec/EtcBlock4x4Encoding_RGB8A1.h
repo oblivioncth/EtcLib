@@ -17,8 +17,8 @@
 #pragma once
 
 #include "EtcBlock4x4Encoding_RGB8.h"
-#include "EtcErrorMetric.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcErrorMetric.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 
 namespace Etc
 {

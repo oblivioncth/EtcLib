@@ -22,7 +22,7 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 */
 
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 
 // is this needed?
 //#if ETC_WINDOWS
@@ -30,13 +30,13 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 //#endif
 
 
-#include "EtcImage.h"
+#include "Etc/EtcImage.h"
 
-#include "EtcBlock4x4.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Codec/EtcBlock4x4.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 
-#include "EtcBlock4x4Encoding_R11.h"
-#include "EtcBlock4x4Encoding_RG11.h"
+#include "Codec/EtcBlock4x4Encoding_R11.h"
+#include "Codec/EtcBlock4x4Encoding_RG11.h"
 
 #include <stdlib.h>
 //#include <algorithm>

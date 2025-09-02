@@ -28,11 +28,11 @@ Block4x4Encoding_RGB8A1 is used when there is a mixture of alphas in the 4x4 blo
 
 */
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_RGB8A1.h"
 
 #include "EtcBlock4x4.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcBlock4x4Encoding_RGB8.h"
 
 #include <stdio.h>

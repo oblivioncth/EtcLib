@@ -21,10 +21,10 @@ Block4x4Encoding_R11 is the encoder to use when targetting file format R11 and S
 
 */
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_R11.h"
 
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 //#include "EtcBlock4x4.h"
 
 #include <stdio.h>

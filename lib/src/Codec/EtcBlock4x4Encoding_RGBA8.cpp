@@ -28,10 +28,10 @@ Block4x4Encoding_RGBA8 is used when there is a mixture of alphas in the 4x4 bloc
 
 */
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_RGBA8.h"
 
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcBlock4x4.h"
 
 #include <stdio.h>

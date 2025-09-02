@@ -22,11 +22,11 @@ used for the ETC1 subset of file format RGB8, RGBA8 and RGB8A1
 
 */
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_ETC1.h"
 
 #include "EtcBlock4x4.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcDifferentialTrys.h"
 
 #include <stdio.h>

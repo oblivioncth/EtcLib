@@ -27,10 +27,10 @@ Block4x4Encoding_ETC1 encodes the ETC1 subset of RGB8.
 // TODO: add isGray opimizations where rgb are iterated once for a single radius
 // instead of as individual channels.
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_RGB8.h"
 
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcBlock4x4.h"
 #include "EtcMath.h"
 

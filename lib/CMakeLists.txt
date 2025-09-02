@@ -10,9 +10,11 @@ ob_add_standard_library(${LIB_TARGET_NAME}
         COMMON "${LIB_ALIAS_NAME}"
         FILES
             Etc.h
-            EtcColor.h
+            EtcBlock4x4EncodingBits.h
+            # EtcColor.h Totally commented out
             EtcColorFloatRGBA.h
             EtcConfig.h
+            EtcErrorMetric.h
             EtcImage.h
     IMPLEMENTATION
         Etc.cpp
@@ -21,7 +23,6 @@ ob_add_standard_library(${LIB_TARGET_NAME}
         Codec/EtcBlock4x4.h
         Codec/EtcBlock4x4Encoding.cpp
         Codec/EtcBlock4x4Encoding.h
-        Codec/EtcBlock4x4EncodingBits.h
         Codec/EtcBlock4x4Encoding_ETC1.cpp
         Codec/EtcBlock4x4Encoding_ETC1.h
         Codec/EtcBlock4x4Encoding_R11.cpp
@@ -36,7 +37,6 @@ ob_add_standard_library(${LIB_TARGET_NAME}
         Codec/EtcBlock4x4Encoding_RGBA8.h
         Codec/EtcDifferentialTrys.cpp
         Codec/EtcDifferentialTrys.h
-        Codec/EtcErrorMetric.h
         Codec/EtcIndividualTrys.cpp
         Codec/EtcIndividualTrys.h
         Codec/EtcMath.cpp

@@ -22,10 +22,10 @@ particular file format (e.g. ETC1, RGB8, RGBA8, R11)
 
 */
 
-#include "EtcConfig.h"
+#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding.h"
 
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcBlock4x4.h"
 
 #include <stdio.h>

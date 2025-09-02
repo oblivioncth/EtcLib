@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include "EtcColorFloatRGBA.h"
-#include "EtcBlock4x4EncodingBits.h"
-#include "EtcErrorMetric.h"
+#include "Etc/EtcColorFloatRGBA.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcErrorMetric.h"
 
 
 namespace Etc
