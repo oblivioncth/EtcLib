@@ -9,15 +9,15 @@ ob_add_standard_library(${LIB_TARGET_NAME}
     HEADERS_API
         COMMON "${LIB_ALIAS_NAME}"
         FILES
-            Etc.h
+            # Etc.h - Needs more restoation work
             EtcBlock4x4EncodingBits.h
-            # EtcColor.h Totally commented out
+            # EtcColor.h - Totally commented out
             EtcColorFloatRGBA.h
             EtcConfig.h
             EtcErrorMetric.h
             EtcImage.h
     IMPLEMENTATION
-        Etc.cpp
+        # Etc.cpp - Needs more restoation work
         EtcImage.cpp
         Output.h
         Codec/EtcBlock4x4.cpp

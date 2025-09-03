@@ -60,6 +60,9 @@ namespace Etc
 			DEFAULT = SRGB8
 		};
 
+        /* COMPARED TO ORIGINAL
+         * - Added 'Format a_format' arg
+         */
 		// constructor using source image
 		Image(Format a_format, const ColorR8G8B8A8 *a_pafSourceRGBA,
                 unsigned int a_uiSourceWidth, unsigned int a_uiSourceHeight,
@@ -74,6 +77,15 @@ namespace Etc
 
 		~Image(void);
 
+
+        /* COMPARED TO ORIGINAL
+         * - Missing 'Format a_format' arg (moved to ctor)
+         * - Missing 'ErrorMetric a_errormetric' arg
+         * - Missing 'unsigned int a_uiJobs'
+         * - Missing 'unsigned int a_uiMaxJobs' arg
+         * - Added 'float blockPercent'
+         * - Added 'uint8_t* outputTexture'
+         */
         // Multipass encoding.  Uses tons of memory but can thread even though it doesn't help.
 		EncodingStatus Encode(float blockPercent, float a_fEffort, uint8_t* outputTexture);
 
