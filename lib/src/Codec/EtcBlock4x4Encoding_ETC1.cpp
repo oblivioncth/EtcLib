@@ -390,8 +390,6 @@ namespace Etc
 	//
 	void Block4x4Encoding_ETC1::CalculateSourceAverages(void)
 	{
-		static const bool DEBUG_PRINT = false;
-
 //		bool boolRGBX = m_pblockParent->GetImageSource()->GetErrorMetric() == ErrorMetric::RGBX;
 //
 //		if (m_pblockParent->GetSourceAlphaMix() == Block4x4::SourceAlphaMix::OPAQUE || boolRGBX)
