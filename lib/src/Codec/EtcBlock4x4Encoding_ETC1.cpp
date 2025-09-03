@@ -22,7 +22,6 @@ used for the ETC1 subset of file format RGB8, RGBA8 and RGB8A1
 
 */
 
-#include "Etc/EtcConfig.h"
 #include "EtcBlock4x4Encoding_ETC1.h"
 
 #include "EtcBlock4x4.h"
@@ -30,11 +29,8 @@ used for the ETC1 subset of file format RGB8, RGBA8 and RGB8A1
 #include "EtcDifferentialTrys.h"
 #include "Output.h"
 
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
 #include <float.h>
-#include <limits>
 
 namespace Etc
 {

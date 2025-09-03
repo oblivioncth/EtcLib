@@ -21,8 +21,6 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 
 */
 
-
-#include "Etc/EtcConfig.h"
 #include "Output.h"
 
 // is this needed?
@@ -39,13 +37,9 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 #include "Codec/EtcBlock4x4Encoding_R11.h"
 #include "Codec/EtcBlock4x4Encoding_RG11.h"
 
-#include <stdlib.h>
+
 #include <algorithm>
-#include <ctime>
 #include <chrono>
-//#include <future>
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
 #include <vector>
 #include <functional>

@@ -18,7 +18,6 @@
 
 #include "EtcBlock4x4Encoding_RGB8.h"
 #include "Etc/EtcErrorMetric.h"
-#include "Etc/EtcBlock4x4EncodingBits.h"
 
 namespace Etc
 {

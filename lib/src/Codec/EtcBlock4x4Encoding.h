@@ -21,7 +21,6 @@
 #include "Etc/EtcErrorMetric.h"
 
 #include <assert.h>
-#include <float.h>
 
 namespace Etc
 {

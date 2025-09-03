@@ -16,9 +16,7 @@
 
 #pragma once
 
-//#include "EtcColor.h"
 #include "Etc/EtcColorFloatRGBA.h"
-//#include "EtcErrorMetric.h"
 #include "Etc/EtcImage.h"
 #include "EtcBlock4x4Encoding.h"
 

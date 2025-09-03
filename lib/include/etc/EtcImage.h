@@ -20,7 +20,6 @@
 #include "Etc/EtcBlock4x4EncodingBits.h"
 #include "Etc/EtcErrorMetric.h"
 
-
 namespace Etc
 {
 	class Block4x4;
