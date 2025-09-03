@@ -32,6 +32,7 @@ Block4x4Encoding_R11 is the encoder to use when targetting file format R11 and S
 #include <assert.h>
 #include <float.h>
 #include <limits>
+#include <cmath>
 //#include <algorithm>
 
 namespace Etc

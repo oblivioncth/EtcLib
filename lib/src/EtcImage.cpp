@@ -40,14 +40,15 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 #include "Codec/EtcBlock4x4Encoding_RG11.h"
 
 #include <stdlib.h>
-//#include <algorithm>
+#include <algorithm>
 #include <ctime>
 #include <chrono>
 //#include <future>
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-//#include <vector>
+#include <vector>
+#include <functional>
 
 #define ETCCOMP_MIN_EFFORT_LEVEL (0.0f)
 #define ETCCOMP_DEFAULT_EFFORT_LEVEL (40.0f)
@@ -263,7 +264,7 @@ namespace Etc
         // alias the output etxture
         m_paucEncodingBits = outputTexture;
         
-        using namespace STL_NAMESPACE;
+        using namespace std;
         
         struct SortedBlock
         {
