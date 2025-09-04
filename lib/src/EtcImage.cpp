@@ -83,8 +83,8 @@ namespace Etc
         m_format = a_format;
 
         m_encodingbitsformat = DetermineEncodingBitsFormat(m_format);
-        int blockSize = Block4x4EncodingBits::GetBytesPerBlock(m_encodingbitsformat);
-        m_uiEncodingBitsBytes = GetNumberOfBlocks() * blockSize;
+        m_uiBlockSize = Block4x4EncodingBits::GetBytesPerBlock(m_encodingbitsformat);
+        m_uiEncodingBitsBytes = GetNumberOfBlocks() * m_uiBlockSize;
         
 		m_paucEncodingBits = nullptr;
 

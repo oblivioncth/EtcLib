@@ -109,10 +109,24 @@ namespace Etc
 			return m_uiSourceHeight;
 		}
 
+        inline unsigned int GetNumberOfBlockColumns() const
+        {
+            return m_uiBlockColumns;
+        }
+        inline unsigned int GetNumberOfBlockRows() const
+        {
+            return m_uiBlockRows;
+        }
+
 		inline unsigned int GetNumberOfBlocks() const
 		{
 			return m_uiBlockColumns * m_uiBlockRows;
 		}
+
+        inline unsigned int GetBlockSize() const
+        {
+            return m_uiBlockSize;
+        }
         
         inline unsigned char * GetEncodingBits(void)
 		{
@@ -187,6 +201,7 @@ namespace Etc
         // encoding
 		Format m_format;
 		Block4x4EncodingBits::Format m_encodingbitsformat;
+        unsigned int m_uiBlockSize; // depends on format
 		unsigned int m_uiEncodingBitsBytes;		// for entire image
 		unsigned char *m_paucEncodingBits;
 		ErrorMetric m_errormetric;
