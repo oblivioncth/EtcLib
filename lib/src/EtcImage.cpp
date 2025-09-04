@@ -40,7 +40,7 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 
 #include <algorithm>
 #include <chrono>
-#include <assert.h>
+#include <float.h>
 #include <vector>
 #include <functional>
 
