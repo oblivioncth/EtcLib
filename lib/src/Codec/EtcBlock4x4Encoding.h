@@ -73,7 +73,7 @@ namespace Etc
         // the count of the last iteration, can be useful in multipass encoding
         inline uint16_t GetIterationCount(void) const
         {
-            return m_uiEncodingIterations;
+            return static_cast<uint16_t>(m_uiEncodingIterations);
         }
         
         //-------------------

@@ -288,8 +288,8 @@ namespace Etc
             
             for (int x = 0; x < (int)m_uiBlockColumns; ++x)
             {
-                sortedBlocks[yy + x].srcX = x;
-                sortedBlocks[yy + x].srcY = y;
+                sortedBlocks[yy + x].srcX = static_cast<uint16_t>(x);
+                sortedBlocks[yy + x].srcY = static_cast<uint16_t>(y);
             }
         }
         
@@ -372,7 +372,7 @@ namespace Etc
                     }
                     else
                     {
-                        block.Decode(srcX * 4, srcY * 4, outputBlock, this, pass);
+                        block.Decode(srcX * 4, srcY * 4, outputBlock, this, static_cast<uint16_t>(pass));
                     }
 
                     // this is one pass
@@ -382,7 +382,7 @@ namespace Etc
                     // convert to etc block bits
                     encoder->SetEncodingBits();
                     
-                    it.iterationData = pass;
+                    it.iterationData = static_cast<uint16_t>(pass);
                     it.error = encoder->IsDone() ? 0.0f : encoder->GetError();
                 }
                 else {
