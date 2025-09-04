@@ -16,7 +16,6 @@
 
 #pragma once
 
-//#include "EtcBlock4x4Encoding_RGB8.h"
 #include "EtcBlock4x4Encoding_R11.h"
 
 namespace Etc

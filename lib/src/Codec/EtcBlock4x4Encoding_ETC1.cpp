@@ -22,18 +22,15 @@ used for the ETC1 subset of file format RGB8, RGBA8 and RGB8A1
 
 */
 
-#include "EtcConfig.h"
 #include "EtcBlock4x4Encoding_ETC1.h"
 
 #include "EtcBlock4x4.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcDifferentialTrys.h"
+#include "Output.h"
 
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
 #include <float.h>
-#include <limits>
 
 namespace Etc
 {
@@ -354,8 +351,6 @@ namespace Etc
 	//
 	void Block4x4Encoding_ETC1::CalculateMostLikelyFlip(void)
 	{
-		static const bool DEBUG_PRINT = false;
-
 		CalculateSourceAverages();
 
 		float fLeftGrayErrorSum = 0.0f;
@@ -381,10 +376,7 @@ namespace Etc
 			fBottomGrayErrorSum += fBottomGrayError;
 		}
 
-		if (DEBUG_PRINT)
-		{
-            KLOGI("EtcComp", "\n%.2f %.2f\n", fLeftGrayErrorSum + fRightGrayErrorSum, fTopGrayErrorSum + fBottomGrayErrorSum);
-		}
+        DEBUG_PRINT("\n%.2f %.2f\n", fLeftGrayErrorSum + fRightGrayErrorSum, fTopGrayErrorSum + fBottomGrayErrorSum);
 
 		m_boolMostLikelyFlip = (fTopGrayErrorSum + fBottomGrayErrorSum) < (fLeftGrayErrorSum + fRightGrayErrorSum);
 
@@ -398,8 +390,6 @@ namespace Etc
 	//
 	void Block4x4Encoding_ETC1::CalculateSourceAverages(void)
 	{
-		static const bool DEBUG_PRINT = false;
-
 //		bool boolRGBX = m_pblockParent->GetImageSource()->GetErrorMetric() == ErrorMetric::RGBX;
 //
 //		if (m_pblockParent->GetSourceAlphaMix() == Block4x4::SourceAlphaMix::OPAQUE || boolRGBX)
@@ -533,17 +523,11 @@ namespace Etc
 //			}
 //		}
 
-		
-
-		if (DEBUG_PRINT)
-		{
-            KLOGI("EtcComp", "\ntarget: [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f]\n",
-				m_frgbaSourceAverageLeft.fR, m_frgbaSourceAverageLeft.fG, m_frgbaSourceAverageLeft.fB,
-				m_frgbaSourceAverageRight.fR, m_frgbaSourceAverageRight.fG, m_frgbaSourceAverageRight.fB,
-				m_frgbaSourceAverageTop.fR, m_frgbaSourceAverageTop.fG, m_frgbaSourceAverageTop.fB,
-				m_frgbaSourceAverageBottom.fR, m_frgbaSourceAverageBottom.fG, m_frgbaSourceAverageBottom.fB);
-		}
-
+        DEBUG_PRINT("\ntarget: [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f] [%.2f,%.2f,%.2f]\n",
+            m_frgbaSourceAverageLeft.fR, m_frgbaSourceAverageLeft.fG, m_frgbaSourceAverageLeft.fB,
+            m_frgbaSourceAverageRight.fR, m_frgbaSourceAverageRight.fG, m_frgbaSourceAverageRight.fB,
+            m_frgbaSourceAverageTop.fR, m_frgbaSourceAverageTop.fG, m_frgbaSourceAverageTop.fB,
+            m_frgbaSourceAverageBottom.fR, m_frgbaSourceAverageBottom.fG, m_frgbaSourceAverageBottom.fB);
 	}
 
 	// ----------------------------------------------------------------------------------------------------
@@ -1152,10 +1136,7 @@ namespace Etc
 		// try each CW
 		for (unsigned int uiCW = 0; uiCW < CW_RANGES; uiCW++)
 		{
-			if (DEBUG_PRINT)
-			{
-                KLOGI("EtcComp", "\ncw=%u\n", uiCW);
-			}
+            DEBUG_PRINT("\ncw=%u\n", uiCW);
 
 			unsigned int auiPixelSelectors[PIXELS / 2];
 			ColorFloatRGBA	afrgbaDecodedPixels[PIXELS / 2];
@@ -1163,11 +1144,8 @@ namespace Etc
 
 			for (unsigned int uiPixel = 0; uiPixel < 8; uiPixel++)
 			{
-				if (DEBUG_PRINT)
-				{
-                    KLOGI("EtcComp", "\tsource [%.2f,%.2f,%.2f]\n", m_pafrgbaSource[pauiPixelMapping[uiPixel]].fR,
-						m_pafrgbaSource[pauiPixelMapping[uiPixel]].fG, m_pafrgbaSource[pauiPixelMapping[uiPixel]].fB);
-				}
+                DEBUG_PRINT("\tsource [%.2f,%.2f,%.2f]\n", m_pafrgbaSource[pauiPixelMapping[uiPixel]].fR,
+                    m_pafrgbaSource[pauiPixelMapping[uiPixel]].fG, m_pafrgbaSource[pauiPixelMapping[uiPixel]].fB);
 
                 int srcPixelIndex = pauiPixelMapping[uiPixel];
                 
@@ -1195,15 +1173,12 @@ namespace Etc
 						afPixelErrors[uiPixel] = fPixelError;
 					}
 
-					if (DEBUG_PRINT)
-					{
-                        KLOGI("EtcComp", "\tpixel %u, index %u [%.2f,%.2f,%.2f], error %.2f%s\n", uiPixel, uiSelector,
-                            frgbaDecodedPixel.fR,
-                            frgbaDecodedPixel.fG,
-                            frgbaDecodedPixel.fB,
-                            fPixelError,
-                             isBelowError ? " *": "");
-					}
+                    DEBUG_PRINT("\tpixel %u, index %u [%.2f,%.2f,%.2f], error %.2f%s\n", uiPixel, uiSelector,
+                        frgbaDecodedPixel.fR,
+                        frgbaDecodedPixel.fG,
+                        frgbaDecodedPixel.fB,
+                        fPixelError,
+                         isBelowError ? " *": "");
 				}
 			}
 
@@ -1213,10 +1188,7 @@ namespace Etc
 			{
 				fCWError += afPixelErrors[uiPixel];
 			}
-			if (DEBUG_PRINT)
-			{
-                KLOGI("EtcComp", "\terror %.2f\n", fCWError);
-			}
+            DEBUG_PRINT("\terror %.2f\n", fCWError);
 
 			// if best CW so far
 			if (fCWError < *pfHalfError)

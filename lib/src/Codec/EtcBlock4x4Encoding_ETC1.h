@@ -17,7 +17,7 @@
 #pragma once
 
 #include "EtcBlock4x4Encoding.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcDifferentialTrys.h"
 #include "EtcIndividualTrys.h"
 

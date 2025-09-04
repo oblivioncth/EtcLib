@@ -16,10 +16,9 @@
 
 #pragma once
 
-#include "EtcColorFloatRGBA.h"
-#include "EtcBlock4x4EncodingBits.h"
-#include "EtcErrorMetric.h"
-
+#include "Etc/EtcColorFloatRGBA.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcErrorMetric.h"
 
 namespace Etc
 {
@@ -60,6 +59,9 @@ namespace Etc
 			DEFAULT = SRGB8
 		};
 
+        /* COMPARED TO ORIGINAL
+         * - Added 'Format a_format' arg
+         */
 		// constructor using source image
 		Image(Format a_format, const ColorR8G8B8A8 *a_pafSourceRGBA,
                 unsigned int a_uiSourceWidth, unsigned int a_uiSourceHeight,
@@ -74,6 +76,15 @@ namespace Etc
 
 		~Image(void);
 
+
+        /* COMPARED TO ORIGINAL
+         * - Missing 'Format a_format' arg (moved to ctor)
+         * - Missing 'ErrorMetric a_errormetric' arg
+         * - Missing 'unsigned int a_uiJobs'
+         * - Missing 'unsigned int a_uiMaxJobs' arg
+         * - Added 'float blockPercent'
+         * - Added 'uint8_t* outputTexture'
+         */
         // Multipass encoding.  Uses tons of memory but can thread even though it doesn't help.
 		EncodingStatus Encode(float blockPercent, float a_fEffort, uint8_t* outputTexture);
 
@@ -98,10 +109,24 @@ namespace Etc
 			return m_uiSourceHeight;
 		}
 
+        inline unsigned int GetNumberOfBlockColumns() const
+        {
+            return m_uiBlockColumns;
+        }
+        inline unsigned int GetNumberOfBlockRows() const
+        {
+            return m_uiBlockRows;
+        }
+
 		inline unsigned int GetNumberOfBlocks() const
 		{
 			return m_uiBlockColumns * m_uiBlockRows;
 		}
+
+        inline unsigned int GetBlockSize() const
+        {
+            return m_uiBlockSize;
+        }
         
         inline unsigned char * GetEncodingBits(void)
 		{
@@ -163,19 +188,7 @@ namespace Etc
         
 		const char * EncodingFormatToString(void) const;
 		
-        void SetVerboseOutput(bool enabled)
-        {
-            m_bVerboseOutput = enabled;
-        }
-        bool GetVerboseOutput() const
-        {
-            return m_bVerboseOutput;
-        }
-        
-	private:
-        bool m_bVerboseOutput;
-       
-		
+    private:
 		//Image(void);
 		
 		// inputs
@@ -188,6 +201,7 @@ namespace Etc
         // encoding
 		Format m_format;
 		Block4x4EncodingBits::Format m_encodingbitsformat;
+        unsigned int m_uiBlockSize; // depends on format
 		unsigned int m_uiEncodingBitsBytes;		// for entire image
 		unsigned char *m_paucEncodingBits;
 		ErrorMetric m_errormetric;

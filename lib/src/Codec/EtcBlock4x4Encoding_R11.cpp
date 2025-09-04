@@ -21,18 +21,13 @@ Block4x4Encoding_R11 is the encoder to use when targetting file format R11 and S
 
 */
 
-#include "EtcConfig.h"
 #include "EtcBlock4x4Encoding_R11.h"
 
-#include "EtcBlock4x4EncodingBits.h"
-//#include "EtcBlock4x4.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
 #include <float.h>
-#include <limits>
-//#include <algorithm>
+#include <cmath>
 
 namespace Etc
 {
@@ -136,11 +131,11 @@ namespace Etc
                 fMaxRed = fRed;
             }
                         
-            m_srcPixels[uiPixel] = fRed;
+            m_srcPixels[uiPixel] = static_cast<int16_t>(fRed);
         }
         
-        m_redMin = fMinRed;
-        m_redMax = fMaxRed;
+        m_redMin = static_cast<int16_t>(fMinRed);
+        m_redMax = static_cast<int16_t>(fMaxRed);
         
         // now setup for iteration
         m_uiEncodingIterations = 0;
@@ -168,7 +163,7 @@ namespace Etc
             return;
         }
     
-        m_uiEncodingIterations = lastIterationCount;
+        m_uiEncodingIterations = static_cast<uint8_t>(lastIterationCount);
         
         // everything is re-established from the encoded block and iteration count
         // since we already have to allocate the block storage, an iteration count per block is only additional
@@ -407,7 +402,7 @@ namespace Etc
 				}
 
                 // 255 / up to 29
-                int fRangeMultiplier = (int)roundf((fRedRange * (255.0 / 2047.0f)) / fTableEntryRange);
+                int fRangeMultiplier = (int)roundf((fRedRange * (255.0f / 2047.0f)) / fTableEntryRange);
 
                 int fMinMultiplier = clamp(fRangeMultiplier - a_fMultiplierRadius, 0, 15); // yes, 0
                 int fMaxMultiplier = clamp(fRangeMultiplier + a_fMultiplierRadius, 1, 15);
@@ -450,7 +445,7 @@ namespace Etc
 								{
                                     bestPixelError = error;
                                     bestRedError[uiPixel] = error;
-                                    bestSelectors[uiPixel] = uiSelector;
+                                    bestSelectors[uiPixel] = static_cast<uint8_t>(uiSelector);
 									
 									//bestPixelRed[uiPixel] = fPixelRed;
 								}
@@ -471,14 +466,14 @@ namespace Etc
                            
 							if (m_isSnorm)
 							{
-								m_redBase = fBase - 128;
+                                m_redBase = static_cast<int16_t>(fBase - 128);
 							}
 							else
 							{
-                                m_redBase = fBase;
+                                m_redBase = static_cast<int16_t>(fBase);
 							}
-							m_redMultiplier = fMultiplier;
-							m_redModifierTableIndex = uiTableEntry;
+                            m_redMultiplier = static_cast<int16_t>(fMultiplier);
+                            m_redModifierTableIndex = static_cast<uint8_t>(uiTableEntry);
 
                             for (int uiPixel = 0; uiPixel < PIXELS; uiPixel++)
 							{

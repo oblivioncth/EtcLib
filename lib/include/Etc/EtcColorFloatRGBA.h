@@ -16,8 +16,7 @@
 
 #pragma once
 
-#include "EtcConfig.h"
-//#include "EtcColor.h"
+#include "Etc/EtcConfig.h"
 
 #include <math.h>
 
@@ -227,9 +226,9 @@ namespace Etc
 
 			// quantize to 4 bits
 			frgba = frgba.ScaleRGB(15.0f).RoundRGB();
-			uint32_t uiR4 = (uint32_t)frgba.fR;
-            uint32_t uiG4 = (uint32_t)frgba.fG;
-            uint32_t uiB4 = (uint32_t)frgba.fB;
+            uint8_t uiR4 = (uint8_t)frgba.fR;
+            uint8_t uiG4 = (uint8_t)frgba.fG;
+            uint8_t uiB4 = (uint8_t)frgba.fB;
 
             frgba = ConvertFromRGB4(uiR4, uiG4, uiB4);
             frgba.fA = fA;
@@ -244,9 +243,9 @@ namespace Etc
 
 			// quantize to 5 bits
 			frgba = frgba.ScaleRGB(31.0f).RoundRGB();
-            uint32_t uiR5 = (uint32_t)frgba.fR;
-            uint32_t uiG5 = (uint32_t)frgba.fG;
-            uint32_t uiB5 = (uint32_t)frgba.fB;
+            uint8_t uiR5 = (uint8_t)frgba.fR;
+            uint8_t uiG5 = (uint8_t)frgba.fG;
+            uint8_t uiB5 = (uint8_t)frgba.fB;
 
             frgba = ConvertFromRGB5(uiR5, uiG5, uiB5);
             frgba.fA = fA;
@@ -259,9 +258,9 @@ namespace Etc
 			ColorFloatRGBA frgba = ClampRGBA();
 
 			// quantize to 6/7/6 bits
-			uint32_t uiR6 = (uint32_t)frgba.IntRed(63.0f);
-            uint32_t uiG7 = (uint32_t)frgba.IntGreen(127.0f);
-            uint32_t uiB6 = (uint32_t)frgba.IntBlue(63.0f);
+            uint8_t uiR6 = (uint8_t)frgba.IntRed(63.0f);
+            uint8_t uiG7 = (uint8_t)frgba.IntGreen(127.0f);
+            uint8_t uiB6 = (uint8_t)frgba.IntBlue(63.0f);
 
             frgba = ConvertFromR6G7B6(uiR6, uiG7, uiB6);
             frgba.fA = fA;

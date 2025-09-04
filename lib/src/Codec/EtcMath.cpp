@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#include "EtcConfig.h"
 #include "EtcMath.h"
 
 namespace Etc

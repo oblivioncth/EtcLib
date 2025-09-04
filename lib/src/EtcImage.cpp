@@ -21,8 +21,7 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 
 */
 
-
-#include "EtcConfig.h"
+#include "Output.h"
 
 // is this needed?
 //#if ETC_WINDOWS
@@ -30,23 +29,20 @@ Image is an array of 4x4 blocks that represent the encoding of the source image
 //#endif
 
 
-#include "EtcImage.h"
+#include "Etc/EtcImage.h"
 
-#include "EtcBlock4x4.h"
-#include "EtcBlock4x4EncodingBits.h"
+#include "Codec/EtcBlock4x4.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 
-#include "EtcBlock4x4Encoding_R11.h"
-#include "EtcBlock4x4Encoding_RG11.h"
+#include "Codec/EtcBlock4x4Encoding_R11.h"
+#include "Codec/EtcBlock4x4Encoding_RG11.h"
 
-#include <stdlib.h>
-//#include <algorithm>
-#include <ctime>
+
+#include <algorithm>
 #include <chrono>
-//#include <future>
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
-//#include <vector>
+#include <float.h>
+#include <vector>
+#include <functional>
 
 #define ETCCOMP_MIN_EFFORT_LEVEL (0.0f)
 #define ETCCOMP_DEFAULT_EFFORT_LEVEL (40.0f)
@@ -87,8 +83,8 @@ namespace Etc
         m_format = a_format;
 
         m_encodingbitsformat = DetermineEncodingBitsFormat(m_format);
-        int blockSize = Block4x4EncodingBits::GetBytesPerBlock(m_encodingbitsformat);
-        m_uiEncodingBitsBytes = GetNumberOfBlocks() * blockSize;
+        m_uiBlockSize = Block4x4EncodingBits::GetBytesPerBlock(m_encodingbitsformat);
+        m_uiEncodingBitsBytes = GetNumberOfBlocks() * m_uiBlockSize;
         
 		m_paucEncodingBits = nullptr;
 
@@ -97,8 +93,6 @@ namespace Etc
 
 		m_iEncodeTime_ms = 0;
 
-		m_bVerboseOutput = false;
-        
         // this can be nullptr
         m_pafrgbaSource = a_pafSourceRGBA;
 	}
@@ -243,10 +237,7 @@ namespace Etc
                 break;
             }
         }
-        if (m_bVerboseOutput)
-        {
-            KLOGI("EtcComp", "Total iterations %d\n", totalIterations);
-        }
+        DEBUG_PRINT("Total iterations %d\n", totalIterations);
         
         // block deletes the encoding, so don't delete here
         
@@ -267,7 +258,7 @@ namespace Etc
         // alias the output etxture
         m_paucEncodingBits = outputTexture;
         
-        using namespace STL_NAMESPACE;
+        using namespace std;
         
         struct SortedBlock
         {
@@ -297,8 +288,8 @@ namespace Etc
             
             for (int x = 0; x < (int)m_uiBlockColumns; ++x)
             {
-                sortedBlocks[yy + x].srcX = x;
-                sortedBlocks[yy + x].srcY = y;
+                sortedBlocks[yy + x].srcX = static_cast<uint16_t>(x);
+                sortedBlocks[yy + x].srcY = static_cast<uint16_t>(y);
             }
         }
         
@@ -319,10 +310,7 @@ namespace Etc
         {
             numBlocksToFinish = static_cast<unsigned int>(roundf(0.01f * blockPercent * numberOfBlocks));
             
-            if (m_bVerboseOutput)
-            {
-                KLOGI("EtcComp", "Will only finish %d/%d blocks", numBlocksToFinish, numberOfBlocks);
-            }
+            DEBUG_PRINT("Will only finish %d/%d blocks", numBlocksToFinish, numberOfBlocks);
         }
         else
         {
@@ -384,7 +372,7 @@ namespace Etc
                     }
                     else
                     {
-                        block.Decode(srcX * 4, srcY * 4, outputBlock, this, pass);
+                        block.Decode(srcX * 4, srcY * 4, outputBlock, this, static_cast<uint16_t>(pass));
                     }
 
                     // this is one pass
@@ -394,7 +382,7 @@ namespace Etc
                     // convert to etc block bits
                     encoder->SetEncodingBits();
                     
-                    it.iterationData = pass;
+                    it.iterationData = static_cast<uint16_t>(pass);
                     it.error = encoder->IsDone() ? 0.0f : encoder->GetError();
                 }
                 else {
@@ -481,10 +469,7 @@ namespace Etc
         
         delete encoderRG;
         
-        if (m_bVerboseOutput)
-        {
-            KLOGI("EtcComp", "Total iterations %d in %d passes\n", totalIterations, pass + 1);
-        }
+        DEBUG_PRINT("Total iterations %d in %d passes\n", totalIterations, pass + 1);
         
         auto end = std::chrono::steady_clock::now();
 		std::chrono::milliseconds elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);

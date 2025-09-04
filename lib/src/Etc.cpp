@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include "EtcConfig.h"
-#include "Etc.h"
-#include "EtcFilter.h"
+#include "Etc/EtcConfig.h"
+#include "Etc/Etc.h"
+//#include "EtcFilter.h"
 
 #include <string.h>
 
@@ -36,14 +36,13 @@ namespace Etc
 				unsigned char **a_ppaucEncodingBits,
 				unsigned int *a_puiEncodingBitsBytes,
 				unsigned int *a_puiExtendedWidth,
-				unsigned int *a_puiExtendedHeight, 
-				int *a_piEncodingTime_ms, bool a_bVerboseOutput)
+				unsigned int *a_puiExtendedHeight,
+                int *a_piEncodingTime_ms)
 	{
 
 		Image image(a_pafSourceRGBA, a_uiSourceWidth,
 					a_uiSourceHeight,
 					a_eErrMetric);
-		image.m_bVerboseOutput = a_bVerboseOutput;
 		image.Encode(a_format, a_eErrMetric, a_fEffort, a_uiJobs, a_uiMaxJobs);
 
 		*a_ppaucEncodingBits = image.GetEncodingBits();
@@ -64,8 +63,7 @@ namespace Etc
 		unsigned int a_uiMaxMipmaps,
 		unsigned int a_uiMipFilterFlags,
 		RawImage* a_pMipmapImages,
-		int *a_piEncodingTime_ms, 
-		bool a_bVerboseOutput)
+        int *a_piEncodingTime_ms)
 	{
 		auto mipWidth = a_uiSourceWidth;
 		auto mipHeight = a_uiSourceHeight;
@@ -91,9 +89,8 @@ namespace Etc
 			if ( pImageData )
 			{
 			
-				Image image(pImageData, mipWidth, mipHeight,	a_eErrMetric);
+                Image image(pImageData, mipWidth, mipHeight, a_eErrMetric);
 
-                image.m_bVerboseOutput = a_bVerboseOutput;
                 image.Encode(a_format, a_eErrMetric, a_fEffort, a_uiJobs, a_uiMaxJobs);
 
                 a_pMipmapImages[mip].paucEncodingBits = std::shared_ptr<unsigned char>(image.GetEncodingBits(), [](unsigned char *p) { delete[] p; });

@@ -28,18 +28,14 @@ Block4x4Encoding_RGBA8 is used when there is a mixture of alphas in the 4x4 bloc
 
 */
 
-#include "EtcConfig.h"
+
 #include "EtcBlock4x4Encoding_RGBA8.h"
 
-#include "EtcBlock4x4EncodingBits.h"
+#include "Etc/EtcBlock4x4EncodingBits.h"
 #include "EtcBlock4x4.h"
 
-#include <stdio.h>
-#include <string.h>
 #include <assert.h>
 #include <float.h>
-#include <limits>
-//#include <algorithm>
 
 namespace Etc
 {
@@ -280,7 +276,7 @@ namespace Etc
                 fMaxAlpha = fAlpha;
             }
             
-            srcAlpha[uiPixel] = fAlpha;
+            srcAlpha[uiPixel] = static_cast<uint8_t>(fAlpha);
         }
         
         assert(fMinAlpha >= 0);
@@ -372,13 +368,13 @@ namespace Etc
                     {
                         m_fError = (float)fBlockError;
 
-                        m_fBase = fBase;
-                        m_fMultiplier = fMultiplier;
-                        m_uiModifierTableIndex = uiTableEntry;
+                        m_fBase = static_cast<uint8_t>(fBase);
+                        m_fMultiplier = static_cast<uint8_t>(fMultiplier);
+                        m_uiModifierTableIndex = static_cast<uint8_t>(uiTableEntry);
                         
                         for (int uiPixel = 0; uiPixel < PIXELS; uiPixel++)
                         {
-                            m_auiAlphaSelectors[uiPixel] = auiBestSelectors[uiPixel];
+                            m_auiAlphaSelectors[uiPixel] = static_cast<uint8_t>(auiBestSelectors[uiPixel]);
                             
                             //m_afDecodedAlphas[uiPixel] = afBestDecodedAlphas[uiPixel] / 255.0f;
                         }

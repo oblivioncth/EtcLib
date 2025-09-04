@@ -16,12 +16,11 @@
 
 #pragma once
 
-#include "EtcColorFloatRGBA.h"
+#include "Etc/EtcColorFloatRGBA.h"
 
-#include "EtcErrorMetric.h"
+#include "Etc/EtcErrorMetric.h"
 
 #include <assert.h>
-#include <float.h>
 
 namespace Etc
 {
@@ -74,7 +73,7 @@ namespace Etc
         // the count of the last iteration, can be useful in multipass encoding
         inline uint16_t GetIterationCount(void) const
         {
-            return m_uiEncodingIterations;
+            return static_cast<uint16_t>(m_uiEncodingIterations);
         }
         
         //-------------------
