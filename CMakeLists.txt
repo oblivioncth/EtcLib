@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.23.0...3.31.0)
 # Project
 # NOTE: DON'T USE TRAILING ZEROS IN VERSIONS
 project(etc2comp
-    VERSION 1.0
+    VERSION 1.0.1
     LANGUAGES CXX
     DESCRIPTION "Ericsson Texture Compression codec library"
 )
