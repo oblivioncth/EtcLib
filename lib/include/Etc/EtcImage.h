@@ -16,6 +16,9 @@
 
 #pragma once
 
+// Shared Lib Support
+#include "Etc/Etc_export.h"
+
 #include "Etc/EtcColorFloatRGBA.h"
 #include "Etc/EtcBlock4x4EncodingBits.h"
 #include "Etc/EtcErrorMetric.h"
@@ -25,7 +28,7 @@ namespace Etc
 	class Block4x4;
 	class EncoderSpec;
 	
-    class Image
+    class ETC_EXPORT Image
     {
     public:
 

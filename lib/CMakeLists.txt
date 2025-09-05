@@ -5,7 +5,7 @@ ob_add_standard_library(${LIB_TARGET_NAME}
     ALIAS "${LIB_ALIAS_NAME}"
     EXPORT_HEADER
         BASE_NAME "${LIB_ALIAS_NAME}"
-        PATH "${PROJECT_NAME_LC}/${PROJECT_NAME_LC}_export.h"
+        PATH "${LIB_ALIAS_NAME}/${LIB_ALIAS_NAME}_export.h"
     HEADERS_API
         COMMON "${LIB_ALIAS_NAME}"
         FILES
